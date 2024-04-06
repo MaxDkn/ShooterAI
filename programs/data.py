@@ -62,6 +62,7 @@ BULLET_DAMAGE: int = 20
                 else:
                     all_constant[variable_name] = variable_type(value)
         file.close()
+        print(all_constant)
         return all_constant
 
 
@@ -70,7 +71,7 @@ CONSTANT = load_constant()
 
 class DataBase:
     working_path = '..'
-    extension_files = '.db'
+    extension_files = '.pkl'
 
     def __init__(self, reboot=True):
         if reboot:

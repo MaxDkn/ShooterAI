@@ -8,7 +8,7 @@ N_OF_TEAM: int = 2
 N_PLAYERS_IN_TEAM: int = 3
 MARGIN_TO_REMOVE_BULLET: int = 20
 
-FONT_NAME: str = Noto_Sans_Mono
+FONT_NAME: str = Noto Sans Mono
 SHOW_INFO_TEXT_SIZE: int = 10
 CLOCK_SIZE: int = 15
 SHOW_FINAL_SCORE: int = 30
