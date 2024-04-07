@@ -10,7 +10,7 @@ import shutil
 """
 
 
-def load_constant(path_and_file=r'../config.txt'):
+def load_constant(path_and_file=r'./config.txt'):
     all_constant = {}
     if not os.path.isfile(path_and_file):
         with open(path_and_file, 'w') as file:
@@ -62,7 +62,6 @@ BULLET_DAMAGE: int = 20
                 else:
                     all_constant[variable_name] = variable_type(value)
         file.close()
-        print(all_constant)
         return all_constant
 
 
@@ -70,8 +69,9 @@ CONSTANT = load_constant()
 
 
 class DataBase:
-    working_path = '..'
+    working_path = '.'
     extension_files = '.pkl'
+    name_file = 'db'
 
     def __init__(self, reboot=True):
         if reboot:
@@ -86,13 +86,13 @@ class DataBase:
     def create_files(self):
         if not os.path.isdir(f'{self.working_path}/data'):
             os.mkdir(f'{self.working_path}/data')
-        if not os.path.isfile(f'{self.working_path}/data/main{self.extension_files}'):
-            with open(f'{self.working_path}/data/main{self.extension_files}', 'wb') as file:
+        if not os.path.isfile(f'{self.working_path}/data/{self.name_file}{self.extension_files}'):
+            with open(f'{self.working_path}/data/{self.name_file}{self.extension_files}', 'wb') as file:
                 file.write(pickle.dumps('{}'))
                 file.close()
 
     def load_data(self):
-        with open(f'{self.working_path}/data/main{self.extension_files}', 'rb') as file:
+        with open(f'{self.working_path}/data/{self.name_file}{self.extension_files}', 'rb') as file:
             data = pickle.loads(file.read())
             file.close()
             if data == {}:
@@ -101,7 +101,7 @@ class DataBase:
                 return data
 
     def save_data(self, data):
-        with open(f'{self.working_path}/data/main{self.extension_files}', 'wb') as file:
+        with open(f'{self.working_path}/data/{self.name_file}{self.extension_files}', 'wb') as file:
             file.write(pickle.dumps(data))
             file.close()
 

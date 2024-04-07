@@ -1,20 +1,25 @@
 import pygame
 from programs.gui import Text
 from programs.game import Game
-#  https://www.youtube.com/watch?v=rDwaeXuQaEI&ab_channel=MaxonTech
 
 
 class MainWindow:
     pygame.init()
-    background_color = (100, 50, 100)
+    background_color = '#DCD7D0'
     width = 1000
     height = 725
+    background = pygame.image.load(r'img/background.png')
+    background = pygame.transform.scale(background, (height, height))
+    background_rect = background.get_rect(center=(width-height/2 + 40, height/2))
 
     def __init__(self) -> None:
         self.screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption('MENU - SHOOTER AI')
-        self.text = Text('Press <Ctrl> and <Tab> to start the game', 20, (self.width/2, self.height/2+50))
+        self.text = Text('Press <Ctrl> and <Tab> to start the game', 20, (20, 390), 'black', 'topleft')
         self.game = None
+
+    def draw_background(self):
+        self.screen.blit(self.background, self.background_rect)
 
     def run(self) -> None:
         running = True
@@ -25,6 +30,8 @@ class MainWindow:
                 elif event.type == pygame.KEYDOWN:
                     if pygame.key.get_pressed()[pygame.K_TAB] and pygame.key.get_pressed()[pygame.K_LCTRL]:
                         Game(1, False, False, False).run()
+
+            self.draw_background()
             self.text.draw(self.screen)
             pygame.display.update()
             self.screen.fill(self.background_color)

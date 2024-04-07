@@ -261,4 +261,4 @@ class Game:
 
 
 if __name__ == '__main__':
-    Game(10, True, True, 1).run()
+    Game(25, True, True, 1).run()
